@@ -104,7 +104,7 @@ module.exports = function(grunt) {
       },
 
       generate_loader: {
-        files: 'src/loader.template',
+        files: 'src/loader.tpl',
         tasks: ['generate_loader']
       }
     },
