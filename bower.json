@@ -1,8 +1,8 @@
 {
-  "name": "webpack-test",
-  "version": "0.0.0",
+  "name": "webpack-marionette-seed",
+  "version": "0.0.1",
   "authors": [
-    "Valerij Stukanov <vstukanov@drucode.com>"
+    "Valerij Stukanov <vstukanov@me.com>"
   ],
   "license": "MIT",
   "private": true,
@@ -15,6 +15,8 @@
   ],
   "dependencies": {
     "modernizer": "~2.8.2",
-    "jquery": "1.11.2"
+    "jquery": "^1.11.2",
+    "backbone": "^1.1.2",
+    "backbone.marionette": "^2.3.1"
   }
 }
