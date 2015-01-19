@@ -9,10 +9,10 @@ var beforeRequest = function(fragment) {
 
   // This code generated automaticly
   // If you want to add module look at package.json
-  <% _.each(modules, function(module) { %>
-  if ((fragment.indexOf('<%= module %>') === 0) && !register.<%= module %>) {
-    require('<%= module %>')((deffered = $.Deferred()).resolve);
-    register.<%= module %> = true;
+  <% _.each(modules.dynamic, function(module) { %>
+  if ((fragment.indexOf('<%= module.fragment %>') === 0) && !register.<%= module.name %>) {
+    require('<%= module.name %>')((deffered = $.Deferred()).resolve);
+    register.<%= module.name %> = true;
   }
   <% }) %>
   return (deffered || true);
@@ -34,5 +34,8 @@ historyProto.loadUrl = function() {
 };
 
 var App = require('app');
+<% _.each(modules.static, function(module) { %>
+require('<%= module.name %>');
+<% }) %>
 App.start();
 Backbone.history.start();

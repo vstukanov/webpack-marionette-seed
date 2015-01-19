@@ -58,6 +58,33 @@ module.exports = function(grunt) {
     var base = __dirname + '/src/';
     var modules = grunt.config.data.pkg.appModules || [];
     var tmpl = grunt.file.read(base + 'loader.tpl');
+
+    modules = _.map(modules, function(_module) {
+      if (!_.isObject(_module)) {
+        _module = {
+          name: _module
+        }
+
+        if (_module.name[0] === '!') {
+          _module.name = _module.name.slice(1);
+          _module.type = "static";
+        }
+      }
+
+      return _.extend({}, {
+        fragment: _module.name,
+        type: 'dynamic'
+      }, _module);
+    });
+
+    modules = _.reduce(modules, function(memo, _module) {
+      memo[_module.type].push(_module);
+      return memo;
+    }, {
+      'static': [],
+      'dynamic': []
+    });
+
     var data = {
       modules: modules
     };
